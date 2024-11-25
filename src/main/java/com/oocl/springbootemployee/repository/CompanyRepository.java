@@ -1,7 +1,6 @@
 package com.oocl.springbootemployee.repository;
 
 import com.oocl.springbootemployee.model.Company;
-import com.oocl.springbootemployee.model.Employee;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

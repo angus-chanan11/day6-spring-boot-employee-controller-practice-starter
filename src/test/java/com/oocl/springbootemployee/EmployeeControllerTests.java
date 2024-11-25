@@ -1,6 +1,7 @@
 package com.oocl.springbootemployee;
 
 import com.oocl.springbootemployee.model.Employee;
+import com.oocl.springbootemployee.model.Gender;
 import com.oocl.springbootemployee.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,14 @@ public class EmployeeControllerTests {
 
         String employeeJson = client.perform(MockMvcRequestBuilders.get("/employees/1")).andReturn().getResponse().getContentAsString();
         assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
+    }
+    @Test
+    public void should_retrun_male_employee_when_getByGender_given_male() throws Exception {
+
+        List<Employee> expected_employee = employeeRepository.getAllByGender(Gender.MALE);
+
+        String employeeJson = (client.perform((MockMvcRequestBuilders.get("/employees")).param("gender","MALE")))
+                .andReturn().getResponse().getContentAsString();
+        assertThat(listJson.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
     }
 }

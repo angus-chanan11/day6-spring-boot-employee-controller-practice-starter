@@ -112,6 +112,12 @@ public class EmployeeControllerTests {
                 .andReturn().getResponse().getContentAsString();
         assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
     }
+    @Test
+    public void should_delete_employee_success() throws Exception {
+        client.perform(MockMvcRequestBuilders.delete("/employees/1"))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+        assertEquals(1, employeeRepository.getAll().size());
+    }
 }
 
 

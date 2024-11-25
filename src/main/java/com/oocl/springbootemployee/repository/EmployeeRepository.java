@@ -43,4 +43,8 @@ public class EmployeeRepository {
 
         return targetEmployee;
     }
+
+    public void delete(int id) {
+        employees.removeIf(employee -> employee.getId() == id);
+    }
 }

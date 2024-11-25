@@ -18,6 +18,7 @@ public class EmployeeController {
     public List<Employee> getAll() {
         return employeeRepository.getAll();
     }
+
     @GetMapping(path = "/{id}")
     public Employee getById(@PathVariable int id) {
         return employeeRepository.getById(id);

@@ -57,7 +57,7 @@ public class EmployeeControllerTests {
     @Test
     public void should_retrun_male_employee_when_getByGender_given_male() throws Exception {
 
-        List<Employee> expected_employee = employeeRepository.getAllByGender(Gender.MALE);
+        final List<Employee> expected_employee = employeeRepository.getAllByGender(Gender.MALE);
 
         String employeeJson = (client.perform((MockMvcRequestBuilders.get("/employees")).param("gender","MALE")))
                 .andReturn().getResponse().getContentAsString();

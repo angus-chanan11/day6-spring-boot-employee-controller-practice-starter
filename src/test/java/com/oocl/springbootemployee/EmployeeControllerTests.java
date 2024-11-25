@@ -40,7 +40,7 @@ public class EmployeeControllerTests {
     @Test
     public void should_retrun_all_employees_when_get_all() throws Exception {
 
-        List<Employee> expected_employees = employeeRepository.getAll();
+        final List<Employee> expected_employees = employeeRepository.getAll();
 
         String employeeListJson = client.perform(MockMvcRequestBuilders.get("/employees")).andReturn().getResponse().getContentAsString();
         assertThat(listJson.parse(employeeListJson)).usingRecursiveComparison().isEqualTo(expected_employees);

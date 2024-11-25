@@ -1,7 +1,6 @@
 package com.oocl.springbootemployee.controller;
 
 import com.oocl.springbootemployee.model.Company;
-import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.repository.CompanyRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

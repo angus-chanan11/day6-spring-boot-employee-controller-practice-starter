@@ -37,4 +37,9 @@ public class EmployeeController {
     public Employee createEmployee(@RequestBody Employee employee) {
         return employeeRepository.save(employee);
     }
+
+    @PutMapping(path = "/{id}")
+    public Employee updateAgeSalaryById(@PathVariable int id, @RequestBody Employee employee) {
+        return employeeRepository.updateEmployeeAgeSalary(id, employee);
+    }
 }

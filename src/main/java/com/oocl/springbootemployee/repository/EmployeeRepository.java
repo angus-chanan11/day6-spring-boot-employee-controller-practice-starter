@@ -32,4 +32,15 @@ public class EmployeeRepository {
         employees.add(employee);
         return employee;
     }
+
+    public Employee updateEmployeeAgeSalary(int id, Employee employee) {
+        int age = employee.getAge();
+        Double salary = employee.getSalary();
+        Employee targetEmployee = getById(id);
+        targetEmployee.setAge(age);
+        targetEmployee.setSalary(salary);
+        System.out.println(getById(id).getName()+" "+ getById(id).getAge());
+
+        return targetEmployee;
+    }
 }

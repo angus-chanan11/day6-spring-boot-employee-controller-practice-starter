@@ -39,19 +39,12 @@ public class EmployeeControllerTests {
     @BeforeEach
     void setUp() {
         employeeRepository.getAll().clear();
-        System.out.println("Before each, after clear: employeeRepository.getAll() size = " + employeeRepository.getAll().size());
-
         employeeRepository.save(new Employee(0, "Emily", 10, Gender.FEMALE, 10000.0));
         employeeRepository.save(new Employee(1, "Angus", 10, Gender.MALE, 10000.0));
-        System.out.println("Before each, after assignment: employeeRepository.getAll() size = " + employeeRepository.getAll().size());
-
     }
 
     @Test
     public void should_retrun_all_employees_when_get_all() throws Exception {
-        System.out.println("In test: employeeRepository.getAll() size = " + employeeRepository.getAll().size());
-        employeeRepository.getAll().stream().forEach(i-> System.out.println(i.getName()));
-
         List<Employee> expected_employees = employeeRepository.getAll();
 
         String employeeListJson = client.perform(MockMvcRequestBuilders.get("/employees"))
@@ -64,8 +57,6 @@ public class EmployeeControllerTests {
     public void should_retrun_employee_id1_when_getById_given_id1() throws Exception {
         Employee expected_employee = employeeRepository.getById(1);
 
-        employeeRepository.getAll().stream().forEach(i->System.out.println(i.getName()));
-
         String employeeJson = client.perform(MockMvcRequestBuilders.get("/employees/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
@@ -73,9 +64,6 @@ public class EmployeeControllerTests {
     }
     @Test
     public void should_retrun_male_employee_when_getByGender_given_male() throws Exception {
-        System.out.println("In test: employeeRepository.getAll() size = " + employeeRepository.getAll().size());
-        employeeRepository.getAll().stream().forEach(i-> System.out.println(i.getName()));
-
         List<Employee> expected_employee = employeeRepository.getAllByGender(Gender.MALE);
 
         String employeeJson = (client.perform((MockMvcRequestBuilders.get("/employees"))
@@ -102,6 +90,26 @@ public class EmployeeControllerTests {
                         .content(employee))
                         .andExpect(MockMvcResultMatchers.status().isCreated())
                         .andReturn().getResponse().getContentAsString();
+        assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
+    }
+    @Test
+    public void should_update_age_and_salary_when_updateAgeAndSalary_given_id() throws Exception {
+        String employee = """
+                {
+                    "id": 0,
+                    "name": "Emily",
+                    "age": 18,
+                    "gender": "MALE",
+                    "salary": 12000.0
+                }
+                """;
+
+        final Employee expected_employee = new Employee(0, "Emily", 18, Gender.FEMALE, 12000.0);
+        String employeeJson = client.perform((MockMvcRequestBuilders.put("/employees/0"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(employee))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
         assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
     }
 }

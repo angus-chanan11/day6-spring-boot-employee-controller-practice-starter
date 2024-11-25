@@ -11,7 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-    private EmployeeRepository employeeRepository = new EmployeeRepository();
+    private EmployeeRepository employeeRepository;
+
+    public EmployeeController(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     @GetMapping(path = "")
     public List<Employee> getAll() {

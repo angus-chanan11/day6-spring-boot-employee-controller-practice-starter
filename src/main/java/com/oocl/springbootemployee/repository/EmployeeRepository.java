@@ -12,8 +12,8 @@ public class EmployeeRepository {
     private List<Employee> employees = new ArrayList<>();
 
     public EmployeeRepository(){
-        employees.add(new Employee(1, "Emily", 10, Gender.FEMALE, 10000.0));
-        employees.add(new Employee(2, "Angus", 10, Gender.MALE, 10000.0));
+        employees.add(new Employee(0, "Emily", 10, Gender.FEMALE, 10000.0));
+        employees.add(new Employee(1, "Angus", 10, Gender.MALE, 10000.0));
     }
     public List<Employee> getAll() {
         return employees;
@@ -28,7 +28,7 @@ public class EmployeeRepository {
     }
 
     public Employee save(Employee employee) {
-        employee.setId(employees.size()+1);
+        employee.setId(employees.size());
         employees.add(employee);
         return employee;
     }

@@ -1,10 +1,7 @@
 package com.oocl.springbootemployee;
 
 import com.oocl.springbootemployee.model.Company;
-import com.oocl.springbootemployee.model.Employee;
-import com.oocl.springbootemployee.model.Gender;
 import com.oocl.springbootemployee.repository.CompanyRepository;
-import com.oocl.springbootemployee.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -26,4 +26,10 @@ public class EmployeeRepository {
     public List<Employee> getAllByGender(Gender gender) {
         return employees.stream().filter(employee -> employee.getGender() == gender).toList();
     }
+
+    public Employee save(Employee employee) {
+        employee.setId(employees.size()+1);
+        employees.add(employee);
+        return employee;
+    }
 }

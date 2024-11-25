@@ -33,4 +33,13 @@ public class EmployeeControllerTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(expected_employees.get(0).getName()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[1].name").value(expected_employees.get(1).getName()));
     }
+    @Test
+    public void should_retrun_employee_id1_when_getById_given_id1() throws Exception {
+
+        Employee expected_employee = employeeRepository.getById(1);
+
+        client.perform(MockMvcRequestBuilders.get("/employees/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expected_employee.getName()));
+    }
 }

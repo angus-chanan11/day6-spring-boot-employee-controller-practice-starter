@@ -27,10 +27,6 @@ public class Employee {
         return gender;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
     public Integer getAge() {
         return age;
     }
@@ -41,10 +37,6 @@ public class Employee {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getId() {

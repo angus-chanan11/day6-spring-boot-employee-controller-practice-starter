@@ -49,7 +49,7 @@ public class EmployeeControllerTests {
     @Test
     public void should_retrun_employee_id1_when_getById_given_id1() throws Exception {
 
-        Employee expected_employee = employeeRepository.getById(1);
+        final Employee expected_employee = employeeRepository.getById(1);
 
         String employeeJson = client.perform(MockMvcRequestBuilders.get("/employees/1")).andReturn().getResponse().getContentAsString();
         assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);

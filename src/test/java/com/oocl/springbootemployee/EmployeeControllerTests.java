@@ -67,15 +67,16 @@ public class EmployeeControllerTests {
     @Test
     public void should_create_employee_success() throws Exception {
         // Given
-        String employee = """
+        final String employee = """
                 {
                     "name": "Jacky",
                     "age": 12,
                     "gender": "MALE",
                     "salary": 10000.0
-                }""";
+                }
+                """;
 
-        Employee expected_employee = new Employee(3, "Jacky", 12, Gender.MALE, 10000.0);
+        final Employee expected_employee = new Employee(3, "Jacky", 12, Gender.MALE, 10000.0);
         // When
         String employeeJson = client.perform((MockMvcRequestBuilders.post("/employees"))
                         .contentType(MediaType.APPLICATION_JSON)

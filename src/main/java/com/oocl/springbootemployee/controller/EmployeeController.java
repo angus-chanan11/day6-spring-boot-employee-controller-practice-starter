@@ -23,7 +23,7 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/{id}")
-    public Employee getById(@PathVariable int id) {
+    public Employee getById(@PathVariable Integer id) {
         return employeeRepository.getById(id);
     }
 
@@ -39,18 +39,18 @@ public class EmployeeController {
     }
 
     @PutMapping(path = "/{id}")
-    public Employee updateAgeSalaryById(@PathVariable int id, @RequestBody Employee employee) {
+    public Employee updateAgeSalaryById(@PathVariable Integer id, @RequestBody Employee employee) {
         return employeeRepository.updateEmployeeAgeSalary(id, employee);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEmployee(@PathVariable int id) {
+    public void deleteEmployee(@PathVariable Integer id) {
         employeeRepository.delete(id);
     }
 
     @GetMapping(params = {"page", "size"})
-    public List<Employee> getEmployeesByPage(@RequestParam int page, @RequestParam int size) {
+    public List<Employee> getEmployeesByPage(@RequestParam Integer page, @RequestParam Integer size) {
         return employeeRepository.getByPage(page, size);
     }
 }

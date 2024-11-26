@@ -28,7 +28,7 @@ public class CompanyControllerTests {
     @Autowired
     private CompanyRepository companyRepository;
     @Autowired
-    private JacksonTester<List<Company>> listJson;
+    private JacksonTester<List<Company>> companyListJsonTester;
 
     @BeforeEach
     void setUp() {
@@ -44,6 +44,6 @@ public class CompanyControllerTests {
         String companyListJson = client.perform(MockMvcRequestBuilders.get("/companies"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        assertThat(listJson.parse(companyListJson)).usingRecursiveComparison().isEqualTo(expected_companies);
+        assertThat(companyListJsonTester.parse(companyListJson)).usingRecursiveComparison().isEqualTo(expected_companies);
     }
 }

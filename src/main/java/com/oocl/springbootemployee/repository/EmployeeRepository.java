@@ -41,8 +41,6 @@ public class EmployeeRepository {
         Employee targetEmployee = getById(id);
         targetEmployee.setAge(age);
         targetEmployee.setSalary(salary);
-        System.out.println(getById(id).getName() + " " + getById(id).getAge());
-
         return targetEmployee;
     }
 

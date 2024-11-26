@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class EmployeeRepository {
@@ -39,8 +40,10 @@ public class EmployeeRepository {
         Integer age = ageSalaryParam.getAge();
         Double salary = ageSalaryParam.getSalary();
         Employee targetEmployee = getById(id);
-        targetEmployee.setAge(age);
-        targetEmployee.setSalary(salary);
+        if (Objects.nonNull(targetEmployee)) {
+            targetEmployee.setAge(age);
+            targetEmployee.setSalary(salary);
+        }
         return targetEmployee;
     }
 

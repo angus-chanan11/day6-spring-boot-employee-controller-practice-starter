@@ -31,9 +31,9 @@ public class EmployeeControllerTests {
     @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
-    private JacksonTester<List<Employee>> listJson;
+    private JacksonTester<List<Employee>> employeesJsonTester;
     @Autowired
-    private JacksonTester<Employee> json;
+    private JacksonTester<Employee> employeeJacksonTester;
 
     @BeforeEach
     void setUp() {
@@ -49,7 +49,7 @@ public class EmployeeControllerTests {
         String employeeListJson = client.perform(MockMvcRequestBuilders.get("/employees"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        assertThat(listJson.parse(employeeListJson)).usingRecursiveComparison().isEqualTo(expected_employees);
+        assertThat(employeesJsonTester.parse(employeeListJson)).usingRecursiveComparison().isEqualTo(expected_employees);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class EmployeeControllerTests {
         String employeeJson = client.perform(MockMvcRequestBuilders.get("/employees/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
+        assertThat(employeeJacksonTester.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class EmployeeControllerTests {
                 .param("gender", "MALE")))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        assertThat(listJson.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
+        assertThat(employeesJsonTester.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class EmployeeControllerTests {
                         .content(employee))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn().getResponse().getContentAsString();
-        assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
+        assertThat(employeeJacksonTester.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class EmployeeControllerTests {
                         .content(employee))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        assertThat(json.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
+        assertThat(employeeJacksonTester.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class EmployeeControllerTests {
                         .param("size", "1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        assertThat(listJson.parse(employeeListJson)).usingRecursiveComparison().isEqualTo(expected_employees);
+        assertThat(employeesJsonTester.parse(employeeListJson)).usingRecursiveComparison().isEqualTo(expected_employees);
     }
 }
 

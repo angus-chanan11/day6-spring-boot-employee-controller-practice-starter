@@ -95,12 +95,9 @@ public class EmployeeControllerTests {
 
     @Test
     public void should_update_age_and_salary_when_updateAgeAndSalary_given_id() throws Exception {
-        String employee = """
+        String newAgeAndSalary = """
                 {
-                    "id": 0,
-                    "name": "Emily",
                     "age": 18,
-                    "gender": "MALE",
                     "salary": 12000.0
                 }
                 """;
@@ -108,7 +105,7 @@ public class EmployeeControllerTests {
         final Employee expected_employee = new Employee(0, "Emily", 18, Gender.FEMALE, 12000.0);
         String employeeJson = client.perform((MockMvcRequestBuilders.put("/employees/0"))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(employee))
+                        .content(newAgeAndSalary))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
         assertThat(employeeJacksonTester.parse(employeeJson)).usingRecursiveComparison().isEqualTo(expected_employee);

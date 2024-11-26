@@ -25,7 +25,7 @@ public class EmployeeRepository {
     }
 
     public List<Employee> getAllByGender(Gender gender) {
-        return employees.stream().filter(employee -> employee.getGender() == gender).toList();
+        return employees.stream().filter(employee -> employee.getGender().equals(gender)).toList();
     }
 
     public Employee save(Employee employee) {

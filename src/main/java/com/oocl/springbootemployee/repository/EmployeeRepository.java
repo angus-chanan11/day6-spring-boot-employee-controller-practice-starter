@@ -21,7 +21,7 @@ public class EmployeeRepository {
     }
 
     public Employee getById(Integer id) {
-        return employees.stream().filter(employee -> employee.getId() == id).findFirst().orElse(null);
+        return employees.stream().filter(employee -> employee.getId().equals(id)).findFirst().orElse(null);
     }
 
     public List<Employee> getAllByGender(Gender gender) {

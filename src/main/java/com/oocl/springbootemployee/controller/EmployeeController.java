@@ -1,5 +1,6 @@
 package com.oocl.springbootemployee.controller;
 
+import com.oocl.springbootemployee.model.AgeSalaryParam;
 import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.model.Gender;
 import com.oocl.springbootemployee.repository.EmployeeRepository;
@@ -39,8 +40,8 @@ public class EmployeeController {
     }
 
     @PutMapping(path = "/{id}")
-    public Employee updateAgeSalaryById(@PathVariable Integer id, @RequestBody Employee employee) {
-        return employeeRepository.updateEmployeeAgeSalary(id, employee);
+    public Employee updateAgeSalaryById(@PathVariable Integer id, @RequestBody AgeSalaryParam ageSalaryParam) {
+        return employeeRepository.updateEmployeeAgeSalary(id, ageSalaryParam);
     }
 
     @DeleteMapping("/{id}")

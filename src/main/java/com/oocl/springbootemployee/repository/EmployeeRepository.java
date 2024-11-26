@@ -1,5 +1,6 @@
 package com.oocl.springbootemployee.repository;
 
+import com.oocl.springbootemployee.model.AgeSalaryParam;
 import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.model.Gender;
 import org.springframework.stereotype.Repository;
@@ -34,9 +35,9 @@ public class EmployeeRepository {
         return employee;
     }
 
-    public Employee updateEmployeeAgeSalary(Integer id, Employee employee) {
-        Integer age = employee.getAge();
-        Double salary = employee.getSalary();
+    public Employee updateEmployeeAgeSalary(Integer id, AgeSalaryParam ageSalaryParam) {
+        Integer age = ageSalaryParam.getAge();
+        Double salary = ageSalaryParam.getSalary();
         Employee targetEmployee = getById(id);
         targetEmployee.setAge(age);
         targetEmployee.setSalary(salary);
